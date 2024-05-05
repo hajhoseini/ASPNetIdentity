@@ -15,7 +15,17 @@ namespace ASPNetIdentity
             {
                 c.UseSqlServer("Data Source=DPK-115\\SQL2017;Initial Catalog=AppIdentityDb;User ID=sa;Password=Dpk@12345;TrustServerCertificate=True");
             });
-            builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>().AddDefaultTokenProviders();
+            builder.Services.AddIdentity<AppUser, IdentityRole>(
+                                                config =>
+                                                {
+                                                    config.Password.RequireDigit = false;
+                                                    config.Password.RequiredLength = 6;
+                                                    config.Password.RequireNonAlphanumeric = false;
+                                                    config.Password.RequiredUniqueChars = 0;
+                                                    config.Password.RequireLowercase = false;
+                                                    config.Password.RequireUppercase = false;
+                                                }
+                                        ).AddEntityFrameworkStores<AppIdentityDbContext>().AddDefaultTokenProviders();
 
             builder.Services.AddControllersWithViews();
 

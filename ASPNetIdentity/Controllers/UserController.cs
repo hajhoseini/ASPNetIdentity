@@ -17,5 +17,13 @@ namespace ASPNetIdentity.Controllers
         {
             return View(_userManager.Users.ToList());
         }
+
+        // user/CreateUser?username=ali&email=ali@gmail.com&password=123456
+        public IActionResult CreateUser(string username, string email, string password)
+        {
+            var result = _userManager.CreateAsync(new AppUser { UserName = username, Email = email }, password);
+            return RedirectToAction("Index");
+        }
+
     }
 }
