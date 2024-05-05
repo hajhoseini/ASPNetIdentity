@@ -1,3 +1,7 @@
+using ASPNetIdentity.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 namespace ASPNetIdentity
 {
     public class Program
@@ -7,6 +11,12 @@ namespace ASPNetIdentity
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddDbContext<AppIdentityDbContext>(c =>
+            {
+                c.UseSqlServer("Data Source=DPK-115\\SQL2017;Initial Catalog=AppIdentityDb;User ID=sa;Password=Dpk@12345;TrustServerCertificate=True");
+            });
+            builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>().AddDefaultTokenProviders();
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
