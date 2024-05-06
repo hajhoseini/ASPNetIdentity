@@ -18,6 +18,7 @@ namespace ASPNetIdentity
             });
 
             builder.Services.AddTransient<IPasswordValidator<AppUser>, CustomPasswordValidator2>();
+            builder.Services.AddTransient<IUserValidator<AppUser>, CustomUserValidator>();
 
             builder.Services.AddIdentity<AppUser, IdentityRole>(
                                                 config =>
