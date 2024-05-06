@@ -21,7 +21,7 @@ namespace ASPNetIdentity.Controllers
         // user/CreateUser?username=ali&email=ali@gmail.com&password=123456
         public IActionResult CreateUser(string username, string email, string password)
         {
-            var result = _userManager.CreateAsync(new AppUser { UserName = username, Email = email }, password);
+            var result = _userManager.CreateAsync(new AppUser { UserName = username, Email = email }, password).Result;
             return RedirectToAction("Index");
         }
 
