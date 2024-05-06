@@ -24,6 +24,8 @@ namespace ASPNetIdentity
                                                     config.Password.RequiredUniqueChars = 0;
                                                     config.Password.RequireLowercase = false;
                                                     config.Password.RequireUppercase = false;
+                                                    //config.User.AllowedUserNameCharacters = "abcd123";
+                                                    config.User.RequireUniqueEmail = true;
                                                 }
                                         ).AddEntityFrameworkStores<AppIdentityDbContext>().AddDefaultTokenProviders();
 
