@@ -25,5 +25,12 @@ namespace ASPNetIdentity.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult DeleteUser(string username)
+        {
+            var user = _userManager.FindByNameAsync(username).Result;
+            var deleteresult = _userManager.DeleteAsync(user).Result;
+
+            return RedirectToAction("Index");
+        }
     }
 }
