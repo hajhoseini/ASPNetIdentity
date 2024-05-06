@@ -17,12 +17,12 @@ namespace ASPNetIdentity
                 c.UseSqlServer("Data Source=DPK-115\\SQL2017;Initial Catalog=AppIdentityDb;User ID=sa;Password=Dpk@12345;TrustServerCertificate=True");
             });
 
-            builder.Services.AddTransient<IPasswordValidator<AppUser>, CustomPasswordValidator>();
+            builder.Services.AddTransient<IPasswordValidator<AppUser>, CustomPasswordValidator2>();
 
             builder.Services.AddIdentity<AppUser, IdentityRole>(
                                                 config =>
                                                 {
-                                                    config.Password.RequireDigit = false;
+                                                    config.Password.RequireDigit = true;
                                                     config.Password.RequiredLength = 6;
                                                     config.Password.RequireNonAlphanumeric = false;
                                                     config.Password.RequiredUniqueChars = 0;
