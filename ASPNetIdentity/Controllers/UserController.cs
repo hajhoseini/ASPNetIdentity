@@ -22,7 +22,10 @@ namespace ASPNetIdentity.Controllers
         public IActionResult CreateUser(string username, string email, string password)
         {
             var result = _userManager.CreateAsync(new AppUser { UserName = username, Email = email }, password).Result;
-            return RedirectToAction("Index");
+            if (result.Succeeded)
+                return RedirectToAction("Index");
+            else
+                return View();
         }
 
         public IActionResult DeleteUser(string username)

@@ -1,3 +1,4 @@
+using ASPNetIdentity.InfraStructures;
 using ASPNetIdentity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,9 @@ namespace ASPNetIdentity
             {
                 c.UseSqlServer("Data Source=DPK-115\\SQL2017;Initial Catalog=AppIdentityDb;User ID=sa;Password=Dpk@12345;TrustServerCertificate=True");
             });
+
+            builder.Services.AddTransient<IPasswordValidator<AppUser>, CustomPasswordValidator>();
+
             builder.Services.AddIdentity<AppUser, IdentityRole>(
                                                 config =>
                                                 {
