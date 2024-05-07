@@ -35,5 +35,17 @@ namespace ASPNetIdentity.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public IActionResult AddRole(string email, string role)
+        {
+            var user = _userManager.FindByEmailAsync(email).Result;
+            if(user != null)
+            {
+                var result = _userManager.AddToRoleAsync(user, role).Result;
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
     }
 }
