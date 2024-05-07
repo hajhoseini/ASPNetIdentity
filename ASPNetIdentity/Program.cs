@@ -35,6 +35,11 @@ namespace ASPNetIdentity
                                         ).AddEntityFrameworkStores<AppIdentityDbContext>().AddDefaultTokenProviders();
 
             builder.Services.AddControllersWithViews();
+            builder.Services.ConfigureApplicationCookie(c => {
+                                                                //c.AccessDeniedPath = "";
+                                                                //c.Cookie
+                                                                //c.LoginPath = 
+                                                             });
 
             var app = builder.Build();
 
