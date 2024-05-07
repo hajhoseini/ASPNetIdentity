@@ -14,13 +14,13 @@ namespace ASPNetIdentity
             // Add services to the container.
             builder.Services.AddDbContext<AppIdentityDbContext>(c =>
             {
-                c.UseSqlServer("Data Source=DPK-115\\SQL2017;Initial Catalog=AppIdentityDb;User ID=sa;Password=Dpk@12345;TrustServerCertificate=True");
+                c.UseSqlServer("Data Source=DPK-115\\SQL2017;Initial Catalog=AppIdentityDb2;User ID=sa;Password=Dpk@12345;TrustServerCertificate=True");
             });
 
             builder.Services.AddTransient<IPasswordValidator<AppUser>, CustomPasswordValidator2>();
             builder.Services.AddTransient<IUserValidator<AppUser>, CustomUserValidator>();
 
-            builder.Services.AddIdentity<AppUser, IdentityRole>(
+            builder.Services.AddIdentity<AppUser, AppRole>(
                                                 config =>
                                                 {
                                                     config.Password.RequireDigit = true;
