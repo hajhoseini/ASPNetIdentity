@@ -25,7 +25,7 @@ namespace ASPNetIdentity.Controllers
             var user = _userManager.FindByEmailAsync(email).Result;
             if(user != null)
             {
-                var test = _signInManager.SignOutAsync();
+                //var test = _signInManager.SignOutAsync();
                 var result = _signInManager.PasswordSignInAsync(user, password, false, false).Result;
                 if(result.Succeeded)
                 {
