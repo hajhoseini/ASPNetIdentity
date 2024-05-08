@@ -1,4 +1,5 @@
 using ASPNetIdentity.InfraStructures;
+using ASPNetIdentity.InfraStructures.Requirment;
 using ASPNetIdentity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -54,6 +55,13 @@ namespace ASPNetIdentity
                         var result = DateTime.Now - date;
                         return result.Days > 90;
                     });
+                });
+                c.AddPolicy("Requirment", d => {
+                    d.Requirements.Add(new CustomeRequirment
+                    {
+                        Name = "ali"
+                    });
+
                 });
             });
 
