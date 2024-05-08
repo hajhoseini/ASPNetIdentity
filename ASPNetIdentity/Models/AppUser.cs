@@ -2,14 +2,14 @@
 
 namespace ASPNetIdentity.Models
 {
-    public class AppUser : IdentityUser<int>
+    public class AppUser : /*IdentityUser<int>*/IdentityUser
     {
         public DateTime BirthDate { get; set; }
         public string FatherName { get; set; }
     }
 
-    public class AppRole : IdentityRole<int>
-    {
+    //public class AppRole : IdentityRole<int>
+    //{
 
-    }
+    //}
 }
