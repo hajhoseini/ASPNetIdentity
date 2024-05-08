@@ -1,6 +1,7 @@
 ﻿using ASPNetIdentity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace ASPNetIdentity.Controllers
 {
@@ -42,6 +43,20 @@ namespace ASPNetIdentity.Controllers
             if(user != null)
             {
                 var result = _userManager.AddToRoleAsync(user, role).Result;
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+
+        public IActionResult AddClaim(string email)
+        {
+            var user = _userManager.FindByEmailAsync(email).Result;
+            if (user != null)
+            {
+                var claim = new Claim("HireDate", DateTime.Now.AddYears(-5).ToString());
+
+                var result = _userManager.AddClaimAsync(user, claim).Result;
                 return RedirectToAction("Index");
             }
 
