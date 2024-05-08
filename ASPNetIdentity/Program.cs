@@ -21,7 +21,7 @@ namespace ASPNetIdentity
             builder.Services.AddTransient<IUserValidator<AppUser>, CustomUserValidator>();
 
             //builder.Services.AddIdentity<AppUser, AppRole>(
-            builder.Services.AddIdentity<AppUser, IdentityUser>(
+            builder.Services.AddIdentity<AppUser, IdentityRole>(
                                                 config =>
                                                 {
                                                     config.Password.RequireDigit = true;
