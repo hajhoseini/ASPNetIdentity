@@ -42,6 +42,21 @@ namespace ASPNetIdentity
                                                                 //c.LoginPath = 
                                                              });
 
+            builder.Services.AddAuthorization(c =>
+            {
+                c.AddPolicy("CheckHireDate", d =>
+                {
+                    d.RequireAuthenticatedUser();
+                    d.RequireRole("Admin");
+                    d.RequireClaim("HireDate", "1396-01-01", "1396-02-01");
+                    d.RequireAssertion(f => {
+                        var date = DateTime.Parse(f.User.Claims.First(c => c.Type == "HireDate").Value);
+                        var result = DateTime.Now - date;
+                        return result.Days > 90;
+                    });
+                });
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
