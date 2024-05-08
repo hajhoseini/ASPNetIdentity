@@ -45,7 +45,7 @@ namespace ASPNetIdentity
 
             builder.Services.AddAuthorization(c =>
             {
-                c.AddPolicy("CheckHireDate", d =>
+                /*c.AddPolicy("CheckHireDate", d =>
                 {
                     d.RequireAuthenticatedUser();
                     d.RequireRole("Admin");
@@ -61,6 +61,10 @@ namespace ASPNetIdentity
                     {
                         Name = "ali"
                     });
+
+                });*/
+                c.AddPolicy("AuditRequirment", d => {
+                    d.Requirements.Add(new AuditRequirment());
 
                 });
             });
